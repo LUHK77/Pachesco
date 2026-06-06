@@ -1,0 +1,26 @@
+#!/bin/bash
+echo "Bem vindo ao Downloader, o instalador de programas personalizados!";
+echo "1-Instalar programas";
+echo "2-Biblioteca";
+echo "3-Exportar Aplicações";
+echo "4-Backup de Pacotes";
+
+read -p "Digite uma opção: " op;
+
+case "$op" in
+	1)
+	bash instalador.sh
+  	;;
+ 	2)
+  	bash biblioteca/biblioteca.sh
+  	;;
+	3)
+  	echo "Exportando aplicações :)."
+        ;;
+ 	4)
+  	echo "Fazendo backup"
+  	;;
+ 	*)
+  	echo "Digite uma opção valida!, seu maldito"
+  	;;
+esac
