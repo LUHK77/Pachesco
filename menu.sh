@@ -4,6 +4,7 @@ echo "1-Instalar programas";
 echo "2-Biblioteca";
 echo "3-Exportar Aplicações";
 echo "4-Backup de Pacotes";
+echo "5-Sair";
 
 read -p "Digite uma opção: " op;
 
@@ -16,9 +17,12 @@ case "$op" in
   	;;
 	3)
   	echo "Exportando aplicações :)."
-        ;;
+    ;;
  	4)
   	echo "Fazendo backup"
+  	;;
+	5)
+  	echo "Saindo..."
   	;;
  	*)
   	echo "Digite uma opção valida!, seu maldito"
