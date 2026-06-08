@@ -9,11 +9,7 @@ fi
 CYAN='\033[0;36m'
 BOLD='\033[1m'
 RESET='\033[0m'
-VERDE='\033[0;32m'
-SEM_COR='\033[0m'
 
-while true; do
-    clear
     echo -e "${CYAN}┌──────────────────────────────────────────────┐${RESET}"
     echo -e "${CYAN}│${RESET}  ${BOLD}Qual categoria de pacotes deseja instalar?${RESET}  ${CYAN}│${RESET}"
     echo -e "${CYAN}└──────────────────────────────────────────────┘${RESET}"
@@ -31,67 +27,67 @@ while true; do
     case $opcao in
         1)
             clear
-            echo -e "\n${VERDE}[Lendo repositórios...]${SEM_COR}"
+            echo -e "\n${CYAN}[Lendo repositórios...]${RESET}"
             apt update -y
-            echo -e "${VERDE}[Instalando Pacote Design Gráfico...]${SEM_COR}"
+            echo -e "${CYAN}[Instalando Pacote Design Gráfico...]${RESET}"
             apt install -y gimp inkscape scribus
-            echo -e "${VERDE}[Instalando plugins extras do GIMP...]${SEM_COR}"
+            echo -e "${CYAN}[Instalando plugins extras do GIMP...]${RESET}"
             apt install -y gimp-plugin-registry gimp-data-extras
             read -p "Instalação concluída. Pressione [Enter] para voltar ao menu..."
             ;;
         2)
             clear
-            echo -e "\n${VERDE}[Lendo repositórios...]${SEM_COR}"
+            echo -e "\n${CYAN}[Lendo repositórios...]${RESET}"
             apt update -y
-            echo -e "${VERDE}[Instalando Pacote Edição de Vídeo...]${SEM_COR}"
+            echo -e "${CYAN}[Instalando Pacote Edição de Vídeo...]${RESET}"
             apt install -y kdenlive ffmpeg handbrake-gtk
             read -p "Instalação concluída. Pressione [Enter] para voltar ao menu..."
             ;;
         3)
             clear
-            echo -e "\n${VERDE}[Lendo repositórios...]${SEM_COR}"
+            echo -e "\n${CYAN}[Lendo repositórios...]${RESET}"
             apt update -y
-            echo -e "${VERDE}[Instalando dependências para UI/UX...]${SEM_COR}"
+            echo -e "${CYAN}[Instalando dependências para UI/UX...]${RESET}"
             # Penpot via Docker (requer Docker instalado)
             if ! command -v docker &> /dev/null; then
-                echo -e "${VERDE}[Docker não encontrado. Instalando Docker...]${SEM_COR}"
+                echo -e "${CYAN}[Docker não encontrado. Instalando Docker...]${RESET}"
                 apt install -y docker.io docker-compose
                 systemctl enable --now docker
             fi
-            echo -e "${VERDE}[Baixando e iniciando Penpot via Docker Compose...]${SEM_COR}"
+            echo -e "${CYAN}[Baixando e iniciando Penpot via Docker Compose...]${RESET}"
             mkdir -p /opt/penpot && cd /opt/penpot
             curl -o docker-compose.yaml https://raw.githubusercontent.com/penpot/penpot/main/docker/images/docker-compose.yaml
             docker compose -p penpot -f docker-compose.yaml up -d
-            echo -e "${VERDE}[Penpot disponível em: http://localhost:9001]${SEM_COR}"
-            echo -e "${VERDE}[Figma: acesse figma.com no navegador (app web)]${SEM_COR}"
+            echo -e "${CYAN}[Penpot disponível em: http://localhost:9001]${RESET}"
+            echo -e "${CYAN}[Figma: acesse figma.com no navegador (app web)]${RESET}"
             read -p "Instalação concluída. Pressione [Enter] para voltar ao menu..."
             ;;
         4)
             clear
-            echo -e "\n${VERDE}[Lendo repositórios...]${SEM_COR}"
+            echo -e "\n${CYAN}[Lendo repositórios...]${RESET}"
             apt update -y
-            echo -e "${VERDE}[Instalando Pacote Fotografia & RAW...]${SEM_COR}"
+            echo -e "${CYAN}[Instalando Pacote Fotografia & RAW...]${RESET}"
             apt install -y darktable rawtherapee libimage-exiftool-perl
             read -p "Instalação concluída. Pressione [Enter] para voltar ao menu..."
             ;;
         5)
             clear
-            echo -e "\n${VERDE}[Lendo repositórios...]${SEM_COR}"
+            echo -e "\n${CYAN}[Lendo repositórios...]${RESET}"
             apt update -y
-            echo -e "${VERDE}[Instalando Combo Completo Designer...]${SEM_COR}"
+            echo -e "${CYAN}[Instalando Combo Completo Designer...]${RESET}"
             apt install -y gimp inkscape scribus gimp-plugin-registry gimp-data-extras \
                            kdenlive ffmpeg handbrake-gtk \
                            darktable rawtherapee libimage-exiftool-perl
             if ! command -v docker &> /dev/null; then
-                echo -e "${VERDE}[Instalando Docker para o Penpot...]${SEM_COR}"
+                echo -e "${CYAN}[Instalando Docker para o Penpot...]${RESET}"
                 apt install -y docker.io docker-compose
                 systemctl enable --now docker
             fi
-            echo -e "${VERDE}[Iniciando Penpot via Docker Compose...]${SEM_COR}"
+            echo -e "${CYAN}[Iniciando Penpot via Docker Compose...]${RESET}"
             mkdir -p /opt/penpot && cd /opt/penpot
             curl -o docker-compose.yaml https://raw.githubusercontent.com/penpot/penpot/main/docker/images/docker-compose.yaml
             docker compose -p penpot -f docker-compose.yaml up -d
-            echo -e "${VERDE}[Penpot disponível em: http://localhost:9001]${SEM_COR}"
+            echo -e "${CYAN}[Penpot disponível em: http://localhost:9001]${RESET}"
             read -p "Instalação concluída. Pressione [Enter] para voltar ao menu..."
             ;;
         6)
@@ -100,13 +96,12 @@ while true; do
             ;;
         7)
             clear
-            echo -e "\n${VERDE}[Saindo do instalador...]${SEM_COR}"
-            exit 0
+            echo -e "\n${CYAN}[Saindo do Pachesco...]${RESET}"
+            exit 
             ;;
         *)
             clear
             echo -e "\nDigite uma opção válida."
-            sleep 2
+            sudo bash programasdesigner.sh
             ;;
     esac
-done

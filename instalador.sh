@@ -1,8 +1,12 @@
 #!/bin/bash
 
+# Cores da interface
+
 CYAN='\033[0;36m'
 BOLD='\033[1m'
 RESET='\033[0m'
+
+# Menu de seleção de categoria de programas
 
 echo -e "${CYAN}┌──────────────────────────────────────────┐${RESET}"
 echo -e "${CYAN}│${RESET}  ${BOLD}Qual tipo de programa deseja instalar?${RESET}  ${CYAN}│${RESET}"
@@ -14,25 +18,30 @@ echo "4-Outro programa."
 echo "5-Voltar."
 echo "6-Sair."
 
+# Oferece a opção para o usuário digitar
+
 read -p "Escolha uma opção: " op;
 
 case "$op" in
 	"1")
 	clear
 	sudo bash programasdesenvolvedor.sh
-	 ;;
+	;;
 	"2")
-	 sudo bash programasdedesigner.sh
-	 ;;
-	 "3")
-	 sudo bash programasemgeral.sh
-	 ;;
-	 "4")
-	 read -p "Digite o nome do programa desejado: " programa;
-     cd pacotes;
-	 ls;
-	 sudo apt install "$programa" -y;
-	 cat > "biblioteca/pacotes/$programa.sh" << EOF
+	clear
+	sudo bash programasdesigner.sh
+	;;
+	"3")
+	clear
+	sudo bash programasemgeral.sh
+	;;
+	"4")
+	clear
+	read -p "Digite o nome do programa desejado: " programa;
+    cd pacotes;
+	ls;
+	sudo apt install "$programa" -y;
+	cat > "biblioteca/pacotes/$programa.sh" << EOF
 	#!/bin/bash
 
 	NOME="$programa"
