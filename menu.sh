@@ -23,6 +23,7 @@ case "$op" in
   	;;
 	5)
   	echo "Saindo..."
+	clear;
   	;;
  	*)
   	echo "Digite uma opção valida!, seu maldito"

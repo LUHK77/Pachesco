@@ -4,6 +4,7 @@ echo "1-Programas para desenvolvedor."
 echo "2-Programas para designer."
 echo "3-Programas de uso geral."
 echo "4-Outro programa."
+echo "5-Voltar."
 
 read -p "Escolha uma opção: " op;
 
@@ -39,5 +40,9 @@ case "$op" in
 EOF
 
         chmod +x "biblioteca/pacotes/$programa.sh"
+	;;
+	"5")
+	clear;
+	bash menu.sh
 	;;
 esac
