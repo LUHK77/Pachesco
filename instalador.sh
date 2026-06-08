@@ -31,12 +31,32 @@ case "$op" in
 	DATA_INSTALACAO=$(date '+%Y-%m-%d');
 	CAMINHO=$(which "$programa")
 	TAMANHO=$(du -sh "$CAMINHO" | cut -f1);
-
+    echo "INFORMAÇÕES:"
 	echo "Programa: \$NOME"
 	echo "Versão: \$VERSAO"
-        echo "Data de instalação: \$DATA_INSTALACAO"
+    echo "Data de instalação: \$DATA_INSTALACAO"
 	echo "Caminho: \$CAMINHO"
-        echo "Tamanho do arquivo: \$TAMANHO"
+    echo "Tamanho do arquivo: \$TAMANHO"
+
+    echo "1-Atualizar Pacote"
+	echo "2-Remover Pacote"
+	echo "3-Sair"
+	read -p "Digite uma opção: " opc;
+
+	case "$opc" in
+    "1")
+        sudo apt install --only-upgrade "$NOME"
+        ;;
+    "2")
+        sudo apt remove "$NOME"
+        ;;
+    "3")
+        exit
+        ;;
+    *)
+        echo "Opção inválida"
+        ;;
+	esac
 EOF
 
         chmod +x "biblioteca/pacotes/$programa.sh"
