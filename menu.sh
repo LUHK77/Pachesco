@@ -10,9 +10,11 @@ read -p "Digite uma opção: " op;
 
 case "$op" in
 	1)
-	bash instalador.sh
+	clear;
+	bash Instaladores/instalador.sh
   	;;
  	2)
+	clear;
   	bash biblioteca/biblioteca.sh
   	;;
 	3)

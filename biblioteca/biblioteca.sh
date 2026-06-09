@@ -29,3 +29,6 @@ case "$op" in
 	echo "Opção inválida.";
 	;;
 esac
+
+clear;
+bash menu.sh;
