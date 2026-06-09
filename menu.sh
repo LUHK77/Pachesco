@@ -33,7 +33,7 @@ read -p "Digite uma opção: " op;
 case "$op" in
     1)
 	clear
-    sudo bash instalador.sh
+    sudo bash Instalador/instalador.sh
     ;;
     2)
 	clear
