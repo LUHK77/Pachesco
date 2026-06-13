@@ -1,18 +1,20 @@
 #!/bin/bash
+source "Instalador/helpers.sh";
 
 echo "1- Listar Programas";
 echo "2- Atualizar todos os programas";
 echo "3- Gerar log de instalações";
 echo "4- Voltar";
 
-read -p "Digite uma opção: " op;
+read -p "Digite uma opções: " op;
 
 case "$op" in
 
 	"1")
-	ls biblioteca/pacotes;
+	estilizarTexto "Biblioteca";
+	ls Biblioteca/Pacotes | sed 's/\.sh$//';
 	read -p "Digite o nome do programa para ver mais informações: " programa;
-	bash biblioteca/pacotes/"$programa".sh;
+	bash Biblioteca/Pacotes/"$programa".sh;
 	;;
 	"2")
 	sudo apt update -y;

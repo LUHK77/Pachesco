@@ -1,5 +1,5 @@
 #!/bin/bash
-
+source "$(dirname "$0")/helpers.sh";
 # ─────────────────────────────────────────
 #  Cores da Interface
 # ─────────────────────────────────────────
@@ -62,15 +62,10 @@ case $opcao in
         bash "$0"
         ;;
     3)
-        clear
-        echo -e "\n${CYAN}[Atualizando repositórios...]${RESET}"
-        apt update -y
-        echo -e "${CYAN}[Instalando Eclipse...]${RESET}"
-        snap install --classic eclipse
-        echo -e "${GREEN}[✓ Eclipse instalado!]${RESET}"
-        read -p " Pressione [Enter] para voltar ao menu..."
-        bash "$0"
-        ;;
+        clear;
+	    #Cria um arquivo com as informações do programa instalado
+	    criarPacote "eclipse" "snap";
+	;;
     4)
         clear
         echo -e "\n${CYAN}[Adicionando repositório do BeKeeper Studio...]${RESET}"

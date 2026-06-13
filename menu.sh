@@ -1,5 +1,5 @@
-#!/bin/bash
-
+﻿#!/bin/bash
+clear;
 # Cores da Interface
 
 CYAN='\033[0;36m'
@@ -22,7 +22,7 @@ RESET='\033[0m'
 
 echo "1-Instalar programas";
 echo "2-Biblioteca";
-echo "3-Exportar Aplicações";
+echo "3-Exportar Lista de Programas";
 echo "4-Backup de Pacotes";
 echo "5-Sair";
 
@@ -37,14 +37,15 @@ case "$op" in
     ;;
     2)
 	clear
-    bash biblioteca.sh
+    bash Biblioteca/biblioteca.sh
     ;;
     3)
-	clear
+	clear;
+    ls Biblioteca/Pacotes | sed 's/\.sh$//' > Biblioteca/relatorioDeProgramas.txt;
 	echo "Exportando aplicações..."
     ;;
     4)
-	clear
+	clear;
     echo "Fazendo backup..."
     ;;
     5)
