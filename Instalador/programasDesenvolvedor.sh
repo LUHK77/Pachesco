@@ -25,7 +25,7 @@ echo ""
 echo " 1) VS Code";
 echo " 2) Arduino";
 echo " 3) Eclipse";
-echo " 4) BeKeeper Studio";
+echo " 4) Postegre SQL";
 echo " 5) IntelliJ IDEA";
 echo " 6) Dev C++";
 echo ""
@@ -49,7 +49,7 @@ case $opcao in
 	;;
     4)
         clear
-        criarPacote "beekeeper-studio" "apt"
+        criarPacote "sqlitestudio" "apt"
         ;;
     5)
         clear

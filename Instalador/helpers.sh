@@ -49,7 +49,7 @@ criarPacote() {
     NOME="${programa}";
     TIPO="${tipo}";
     case "\$TIPO" in
-    apt)
+    apt | deb)
         VERSAO=\$(dpkg-query -W -f='\${Version}' "\$NOME" 2>/dev/null)
         ;;
     snap)
@@ -62,11 +62,11 @@ criarPacote() {
     DATA_INSTALACAO=\$(date '+%Y-%m-%d');
     CAMINHO=\$(which "\$NOME");
     case "\$TIPO" in
-    apt)
+    apt | deb)
         TAMANHO=\$(dpkg-query -W -f='\${Installed-Size}' "\$NOME")
     ;;
     snap)
-        TAMANHO=\$(du -sk /snap/"\$NOME"/$(snap list "\$NOME" | awk 'NR==2{print $3}') | awk '{print $1}')
+        TAMANHO=\$(du -sk /snap/"\$NOME"/\$(snap list "\$NOME" | awk 'NR==2{print \$3}') | awk '{print \$1}')
     ;;
     *)
         TAMANHO="Desconhecido"
@@ -98,7 +98,7 @@ criarPacote() {
 	case "\$opc" in
     "1")
          case "\$TIPO" in
-            apt)
+            apt | deb)
                 sudo apt install --only-upgrade "\$NOME" -y
                 ;;
             snap)
@@ -108,7 +108,7 @@ criarPacote() {
         ;;
     "2")
          case "\$TIPO" in
-            apt)
+            apt | deb)
                 sudo apt remove "\$NOME" -y
                 ;;
             snap)
@@ -127,7 +127,6 @@ criarPacote() {
 	esac
 
 	clear;
-	cd ../..;
 	bash menu.sh;
 EOF
 

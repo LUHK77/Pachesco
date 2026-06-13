@@ -1,2 +1,4 @@
+arduino
+beekeeper-studio
 eclipse
 nautilus

@@ -1,8 +1,8 @@
     #!/bin/bash 
     source "Instalador/helpers.sh";
 
-    NOME="eclipse";
-    TIPO="snap";
+    NOME="beekeeper-studio";
+    TIPO="apt";
     case "$TIPO" in
     apt | deb)
         VERSAO=$(dpkg-query -W -f='${Version}' "$NOME" 2>/dev/null)
@@ -21,7 +21,7 @@
         TAMANHO=$(dpkg-query -W -f='${Installed-Size}' "$NOME")
     ;;
     snap)
-        TAMANHO=$(du -sk /snap/"$NOME"/$(snap list "$NOME" | awk 'NR==2{print $3}') | awk '{print $1}')
+        TAMANHO=$(du -sk /snap/"$NOME"/ | awk '{print beekeeper-studio}')
     ;;
     *)
         TAMANHO="Desconhecido"
