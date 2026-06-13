@@ -1,18 +1,27 @@
 #!/bin/bash
 
 estilizarTexto() {
-    local texto="$1";
-    # Cores da interface
+    local texto="$1"
 
-    CYAN='\033[0;36m';  
-    BOLD='\033[1m';
-    RESET='\033[0m';
+    local CYAN='\033[0;36m'
+    local BOLD='\033[1m'
+    local RESET='\033[0m'
 
+    local tamanho=${#texto}
 
-    echo -e "${CYAN}┌───────────────────────────────────────────┐${RESET}";
-    echo -e "${CYAN}│   ${RESET}${BOLD}${texto}${RESET}${CYAN}  │${RESET}";
-    echo -e "${CYAN}└───────────────────────────────────────────┘${RESET}";
+    echo -ne "${CYAN}┌"
+    for ((i=0; i<tamanho+2; i++)); do
+        echo -n "─"
+    done
+    echo -e "┐${RESET}"
 
+    echo -e "${CYAN}│${RESET} ${BOLD}${texto}${RESET} ${CYAN}│${RESET}"
+
+    echo -ne "${CYAN}└"
+    for ((i=0; i<tamanho+2; i++)); do
+        echo -n "─"
+    done
+    echo -e "┘${RESET}"
 }
 
 criarPacote() {
