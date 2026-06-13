@@ -1,7 +1,7 @@
     #!/bin/bash 
     source "Instalador/helpers.sh";
 
-    NOME="eclipse";
+    NOME="arduino";
     TIPO="snap";
     case "$TIPO" in
     apt)
@@ -21,7 +21,7 @@
         TAMANHO=$(dpkg-query -W -f='${Installed-Size}' "$NOME")
     ;;
     snap)
-        TAMANHO=$(du -sk /snap/"$NOME"/ | awk '{print eclipse}')
+        TAMANHO=$(du -sk /snap/"$NOME"/ | awk '{print arduino}')
     ;;
     *)
         TAMANHO="Desconhecido"

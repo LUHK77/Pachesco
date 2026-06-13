@@ -72,5 +72,4 @@
 	esac
 
 	clear;
-	cd ../..;
 	bash menu.sh;

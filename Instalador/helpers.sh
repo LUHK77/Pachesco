@@ -27,7 +27,7 @@ criarPacote() {
             sudo apt install "$programa" -y
             ;;
         snap)
-            sudo snap install "$programa"
+            sudo snap install --classic "$programa"
             ;;
         deb)
             sudo dpkg -i "$programa"
@@ -61,7 +61,17 @@ criarPacote() {
     esac
     DATA_INSTALACAO=\$(date '+%Y-%m-%d');
     CAMINHO=\$(which "\$NOME");
-    TAMANHO=\$(dpkg-query -W -f='\${Installed-Size}' "\$NOME");
+    case "\$TIPO" in
+    apt)
+        TAMANHO=\$(dpkg-query -W -f='\${Installed-Size}' "\$NOME")
+    ;;
+    snap)
+        TAMANHO=\$(du -sk /snap/"\$NOME"/$(snap list "\$NOME" | awk 'NR==2{print $3}') | awk '{print $1}')
+    ;;
+    *)
+        TAMANHO="Desconhecido"
+        ;;
+    esac
     TAMANHO_MB=\$(awk -v tam="\$TAMANHO" 'BEGIN {printf "%.2f", tam/1024}');
     TAMANHO_GB=\$(awk -v tam="\$TAMANHO" 'BEGIN {printf "%.2f", tam/1024/1024}');
 

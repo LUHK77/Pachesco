@@ -32,5 +32,4 @@ case "$op" in
 	;;
 esac
 
-clear;
-bash menu.sh;
+
