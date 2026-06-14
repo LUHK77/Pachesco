@@ -27,6 +27,17 @@ estilizarTexto() {
 criarPacote() {
     local programa="$1"
     local tipo="$2"
+    local arquivo="Biblioteca/Pacotes/${programa}.sh"
+
+    if [[ -f "$arquivo" ]] || dpkg -s "$programa" &>/dev/null || snap list | grep -qw "$programa"; then
+    if [[ -f "$arquivo" ]]; then
+        echo "Pacote '$programa' já existe no sistema."
+        sleep 2
+        return 1
+    fi
+    echo "Aviso: o pacote '$programa' já pode estar instalado no sistema. Criando o arquivo do pacote..."
+    sleep 2
+    fi
 
     echo -e "\n${CYAN}[Atualizando repositórios...]${RESET}";
     apt update -y;

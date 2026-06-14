@@ -1,5 +1,5 @@
 #!/bin/bash
-source "$(dirname "$0")/helpers.sh";
+source "Instalador/helpers.sh";
 
 # Menu de seleção de categoria de programas
 
