@@ -1,6 +1,6 @@
 # <span style="color:cyan">Projeto Pachesco</span>
 
-![[Screenshot From 2026-06-13 21-56-05.png]]
+![[Interface]](https://github.com/LUHK77/Pachesco/blob/T1007/Interface%20do%20Pachesco.png)
 
 > **Status do projeto:** desenvolvimento
 
