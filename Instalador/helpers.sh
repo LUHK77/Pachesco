@@ -47,7 +47,7 @@ criarPacote() {
             sudo apt install "$programa" -y
             ;;
         snap)
-            sudo snap install "$programa"
+            sudo snap install --classic "$programa"
             ;;
         deb)
             sudo dpkg -i "$programa"
@@ -61,15 +61,16 @@ criarPacote() {
             return 1
             ;;
     esac
-    mkdir -p Biblioteca/Pacotes;
-    cat > "Biblioteca/Pacotes/${programa}.sh" << EOF
+    mkdir -p Biblioteca/Pacotes/"$programa";
+    echo "${programa}|${tipo}" > "Biblioteca/Pacotes/${programa}/${programa}.txt";
+    cat > "Biblioteca/Pacotes/${programa}/${programa}.sh" << EOF
     #!/bin/bash 
     source "$(dirname "$0")/helpers.sh";
 
     NOME="${programa}";
     TIPO="${tipo}";
     case "\$TIPO" in
-    apt)
+    apt | deb)
         VERSAO=\$(dpkg-query -W -f='\${Version}' "\$NOME" 2>/dev/null)
         ;;
     snap)
@@ -81,7 +82,17 @@ criarPacote() {
     esac
     DATA_INSTALACAO=\$(date '+%Y-%m-%d');
     CAMINHO=\$(which "\$NOME");
-    TAMANHO=\$(dpkg-query -W -f='\${Installed-Size}' "\$NOME");
+    case "\$TIPO" in
+    apt | deb)
+        TAMANHO=\$(dpkg-query -W -f='\${Installed-Size}' "\$NOME")
+    ;;
+    snap)
+        TAMANHO=\$(du -sk /snap/"\$NOME"/\$(snap list "\$NOME" | awk 'NR==2{print \$3}') | awk '{print \$1}')
+    ;;
+    *)
+        TAMANHO="Desconhecido"
+        ;;
+    esac
     TAMANHO_MB=\$(awk -v tam="\$TAMANHO" 'BEGIN {printf "%.2f", tam/1024}');
     TAMANHO_GB=\$(awk -v tam="\$TAMANHO" 'BEGIN {printf "%.2f", tam/1024/1024}');
 
@@ -108,7 +119,7 @@ criarPacote() {
 	case "\$opc" in
     "1")
          case "\$TIPO" in
-            apt)
+            apt | deb)
                 sudo apt install --only-upgrade "\$NOME" -y
                 ;;
             snap)
@@ -118,7 +129,7 @@ criarPacote() {
         ;;
     "2")
          case "\$TIPO" in
-            apt)
+            apt | deb)
                 sudo apt remove "\$NOME" -y
                 ;;
             snap)
@@ -126,7 +137,7 @@ criarPacote() {
                 ;;
         esac
 
-        rm -- "\$0"
+        sudo rm -rf "\$(dirname "\${BASH_SOURCE[0]}")"
         ;;
     "3")
         exit
@@ -137,9 +148,23 @@ criarPacote() {
 	esac
 
 	clear;
-	cd ../..;
 	bash menu.sh;
 EOF
 
     chmod +x "Biblioteca/Pacotes/${programa}.sh"
+}
+
+exportarPacotes(){
+    cat Biblioteca/Pacotes/*/*.txt > Biblioteca/relatorioDeProgramas.txt;
+	echo "Exportando aplicações...";
+}
+
+importarPacotes(){
+    while IFS='|' read -r nome tipo; do
+    nome=$(echo "$nome" | xargs)
+    tipo=$(echo "$tipo" | xargs)
+
+    criarPacote "$nome" "$tipo"
+
+done < Biblioteca/relatorioDeProgramas.txt
 }

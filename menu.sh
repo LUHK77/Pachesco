@@ -1,5 +1,6 @@
 ﻿#!/bin/bash
 clear;
+source "Instalador/helpers.sh";
 # Cores da Interface
 
 CYAN='\033[0;36m'
@@ -23,7 +24,7 @@ RESET='\033[0m'
 echo "1-Instalar programas";
 echo "2-Biblioteca";
 echo "3-Exportar Lista de Programas";
-echo "4-Backup de Pacotes";
+echo "4-Importar Lista de Programas";
 echo "5-Sair";
 
 # Oferece a opção para o usuário digitar
@@ -41,12 +42,11 @@ case "$op" in
     ;;
     3)
 	clear;
-    ls Biblioteca/Pacotes | sed 's/\.sh$//' > Biblioteca/relatorioDeProgramas.txt;
-	echo "Exportando aplicações..."
+    exportarPacotes
     ;;
     4)
 	clear;
-    echo "Fazendo backup..."
+    importarPacotes
     ;;
     5)
 	clear

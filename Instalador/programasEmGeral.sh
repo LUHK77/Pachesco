@@ -1,12 +1,11 @@
 #!/bin/bash
-
+source "$(dirname "$0")/helpers.sh";
 # ─────────────────────────────────────────
 #  Cores da Interface
 # ─────────────────────────────────────────
 CYAN='\033[0;36m'
 GREEN='\033[0;32m'
 RED='\033[0;31m'
-BOLD='\033[1m'
 RESET='\033[0m'
 
 # ─────────────────────────────────────────
@@ -18,9 +17,7 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 clear
-echo -e "${CYAN}┌──────────────────────────────────────────────┐${RESET}"
-echo -e "${CYAN}│${RESET}   ${BOLD}Escolha o programa que deseja instalar:${RESET}   ${CYAN}│${RESET}"
-echo -e "${CYAN}└──────────────────────────────────────────────┘${RESET}"
+estilizarTexto "Escolha o programa que deseja instalar:"
 echo ""
 echo " 1) VLC           — Reprodutor de mídia"
 echo " 2) LibreOffice   — Pacote de escritório"

@@ -45,3 +45,4 @@ case "$op" in
 	bash instalador.sh;
     ;;
 esac
+bash menu.sh;

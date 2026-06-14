@@ -1,2 +1,2 @@
-eclipse
-nautilus
+blender|snap
+nautilus|apt

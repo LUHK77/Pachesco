@@ -14,7 +14,7 @@ case "$op" in
 	estilizarTexto "Biblioteca";
 	ls Biblioteca/Pacotes | sed 's/\.sh$//';
 	read -p "Digite o nome do programa para ver mais informações: " programa;
-	bash Biblioteca/Pacotes/"$programa".sh;
+	bash Biblioteca/Pacotes/"$programa"/"$programa".sh;
 	;;
 	"2")
 	sudo apt update -y;
@@ -32,5 +32,3 @@ case "$op" in
 	;;
 esac
 
-clear;
-bash menu.sh;
