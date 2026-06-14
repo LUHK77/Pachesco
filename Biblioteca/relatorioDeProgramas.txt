@@ -1,0 +1,3 @@
+arduino
+eclipse
+nautilus
