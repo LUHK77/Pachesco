@@ -1,2 +1,1 @@
-blender|snap
 nautilus|apt

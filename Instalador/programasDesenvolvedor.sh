@@ -9,14 +9,6 @@ RED='\033[0;31m'
 BOLD='\033[1m'
 RESET='\033[0m'
 
-# ─────────────────────────────────────────
-#  Verificar root
-# ─────────────────────────────────────────
-if [[ $EUID -ne 0 ]]; then
-    echo -e "${RED}[!] Este script precisa ser executado como root (sudo).${RESET}"
-    exit 1
-fi
-
 clear
 echo -e "${CYAN}┌────────────────────────────────────────────┐${RESET}"
 echo -e "${CYAN}│${RESET}   ${BOLD}Escolha o programa que deseja instalar:${RESET}   ${CYAN}│${RESET}"
@@ -25,8 +17,8 @@ echo ""
 echo " 1) VS Code";
 echo " 2) Arduino";
 echo " 3) Eclipse";
-echo " 4) Postegre SQL";
-echo " 5) IntelliJ IDEA";
+echo " 4) SQLite";
+echo " 5) Pycharm";
 echo " 6) Dev C++";
 echo ""
 echo " 0) Sair"
@@ -46,7 +38,7 @@ case $opcao in
         clear;
 	    #Cria um arquivo com as informações do programa instalado
 	    criarPacote "eclipse" "snap";
-	;;
+	    ;;
     4)
         clear
         criarPacote "sqlitestudio" "apt"
@@ -67,8 +59,8 @@ case $opcao in
     *)
         clear
         echo -e "\n${RED}[!] Opção inválida. Tente novamente.${RESET}"
-        bash programasdesenvolvedor.sh
+        bash programasDesenvolvedor.sh
         sleep 1
-        bash programasdesenvolvedor.sh
+        bash programasDesenvolvedor.sh
         ;;
 esac

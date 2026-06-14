@@ -1,8 +1,8 @@
     #!/bin/bash 
-    source "Instalador/helpers.sh";
+    source "./helpers.sh";
 
-    NOME="eclipse";
-    TIPO="snap";
+    NOME="nautilus";
+    TIPO="apt";
     case "$TIPO" in
     apt | deb)
         VERSAO=$(dpkg-query -W -f='${Version}' "$NOME" 2>/dev/null)
@@ -71,7 +71,7 @@
                 ;;
         esac
 
-        rm -- "$0"
+        sudo rm -rf "$(dirname "menu.sh")"
         ;;
     "3")
         exit

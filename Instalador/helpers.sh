@@ -41,8 +41,9 @@ criarPacote() {
             return 1
             ;;
     esac
-    mkdir -p Biblioteca/Pacotes;
-    cat > "Biblioteca/Pacotes/${programa}.sh" << EOF
+    mkdir -p Biblioteca/Pacotes/"$programa";
+    echo "${programa}|${tipo}" > "Biblioteca/Pacotes/${programa}/${programa}.txt";
+    cat > "Biblioteca/Pacotes/${programa}/${programa}.sh" << EOF
     #!/bin/bash 
     source "$(dirname "$0")/helpers.sh";
 
@@ -116,7 +117,7 @@ criarPacote() {
                 ;;
         esac
 
-        rm -- "\$0"
+        sudo rm -rf "\$(dirname "\${BASH_SOURCE[0]}")"
         ;;
     "3")
         exit
@@ -131,4 +132,19 @@ criarPacote() {
 EOF
 
     chmod +x "Biblioteca/Pacotes/${programa}.sh"
+}
+
+exportarPacotes(){
+    cat Biblioteca/Pacotes/*/*.txt > Biblioteca/relatorioDeProgramas.txt;
+	echo "Exportando aplicações...";
+}
+
+importarPacotes(){
+    while IFS='|' read -r nome tipo; do
+    nome=$(echo "$nome" | xargs)
+    tipo=$(echo "$tipo" | xargs)
+
+    criarPacote "$nome" "$tipo"
+
+done < Biblioteca/relatorioDeProgramas.txt
 }
