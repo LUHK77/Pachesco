@@ -1,5 +1,6 @@
 #!/bin/bash
 
+#estiliza o texto recebido
 estilizarTexto() {
     local texto="$1"
 
@@ -24,11 +25,13 @@ estilizarTexto() {
     echo -e "┘${RESET}"
 }
 
+#faz a instalação de um pacote, verificando se é do tipo apt ou snap, e cria um arquivo de controle deste pacote
 criarPacote() {
     local programa="$1"
     local tipo="$2"
     local arquivo="Biblioteca/Pacotes/${programa}.sh"
 
+    #verificação se o pacote já existe no sistema
     if [[ -f "$arquivo" ]] || dpkg -s "$programa" &>/dev/null || snap list | grep -qw "$programa"; then
     if [[ -f "$arquivo" ]]; then
         echo "Pacote '$programa' já existe no sistema."
@@ -42,6 +45,7 @@ criarPacote() {
     echo -e "\n${CYAN}[Atualizando repositórios...]${RESET}";
     apt update -y;
     echo -e "\n${CYAN}[Iniciando a Instalação do programa...]${RESET}";
+    #tipo de instalação
     case "$tipo" in
         apt)
             sudo apt install "$programa" -y
@@ -63,6 +67,7 @@ criarPacote() {
     esac
     mkdir -p Biblioteca/Pacotes/"$programa";
     echo "${programa}|${tipo}" > "Biblioteca/Pacotes/${programa}/${programa}.txt";
+    #cria o arquivo de controle, incluindo as informações de cada pacote
     cat > "Biblioteca/Pacotes/${programa}/${programa}.sh" << EOF
     #!/bin/bash 
     source "$(dirname "$0")/helpers.sh";
@@ -113,7 +118,6 @@ criarPacote() {
 
     echo "1-Atualizar Programa";
 	echo "2-Remover Programa";
-    echo "3-Executar Programa"
 	echo "3-Sair";
 	read -p "Digite uma opção: " opc;
 
@@ -141,14 +145,6 @@ criarPacote() {
         sudo rm -rf "\$(dirname "\${BASH_SOURCE[0]}")"
         ;;
     "3")
-        if command -v "\$NOME" &>/dev/null; then
-            "\$NOME"
-        else
-            echo "Não foi possível executar '\$NOME'. Tente abrir manualmente."
-            sleep 2
-        fi
-        ;;
-    "4")
         exit
         ;;
     *)
@@ -160,11 +156,13 @@ EOF
     chmod +x "Biblioteca/Pacotes/${programa}.sh"
 }
 
+#cria uma lista dos pacotes instalados com o tipo
 exportarPacotes(){
     cat Biblioteca/Pacotes/*/*.txt > Biblioteca/relatorioDeProgramas.txt;
 	echo "Exportando aplicações...";
 }
 
+#faz a instalação de todos os pacotes listados
 importarPacotes(){
     while IFS='|' read -r nome tipo; do
     nome=$(echo "$nome" | xargs)

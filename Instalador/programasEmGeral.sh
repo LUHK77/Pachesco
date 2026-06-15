@@ -33,24 +33,23 @@ case $opcao in
         ;;
     3)
         clear
-        criarPacote "firefox" "apt"
+        criarPacote "firefox" "snap"
         ;;
     4)
         clear
-        criarPacote "thunderbird" "apt"
+        criarPacote "thunderbird" "snap"
         ;;
     5)
         clear
-        criarPacote "flameshot" "apt"
+        criarPacote "flameshot" "snap"
         ;;
     6)
         clear
         criarPacote "transmission" "apt"
         ;;
     7)
-        clear
-        cd ..
-        bash instalador.sh
+        clear;
+        bash Instalador/instalador.sh
         ;;
     0)
         clear
@@ -60,6 +59,6 @@ case $opcao in
         clear
         echo -e "\n${RED}[!] Opção inválida. Tente novamente.${RESET}"
         sleep 1
-        bash programasemgeral.sh
+        bash Instalador/programasEmGeral.sh
         ;;
 esac

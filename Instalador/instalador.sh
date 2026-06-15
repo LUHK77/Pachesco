@@ -48,7 +48,8 @@ case "$op" in
     *)
 	clear;
     echo "Digite uma opção valida!";
-	bash instalador.sh;
+	sleep 2;
+	bash Instalador/instalador.sh;
     ;;
 esac
 bash menu.sh;

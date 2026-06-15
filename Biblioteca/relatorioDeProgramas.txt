@@ -1,4 +1,0 @@
-code|snap
-firefox|apt
-krita|apt
-libreoffice|apt

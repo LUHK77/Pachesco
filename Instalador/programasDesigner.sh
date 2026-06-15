@@ -9,10 +9,6 @@ RED='\033[0;31m'
 BOLD='\033[1m'
 RESET='\033[0m'
 
-# ─────────────────────────────────────────
-#  Verificar root
-# ─────────────────────────────────────────
-
 clear
 estilizarTexto "Escolha o programa que deseja instalar:"
 echo ""
@@ -23,6 +19,7 @@ echo " 4) Krita"
 echo " 5) Inkscape"
 echo " 6) Penpot"
 echo ""
+echo " 7) Voltar"
 echo " 0) Sair"
 echo "───────────────────────────────────────────────"
 read -p " Digite o número da sua opção: " opcao
@@ -38,7 +35,7 @@ case $opcao in
         ;;
     3)
         clear
-        criarPacote "figma" "deb"
+        criarPacote "figma-linux" "snap"
         ;;
     4)
         clear
@@ -51,6 +48,10 @@ case $opcao in
     6)
         clear
         criarPacote "penpot-desktop" "snap"
+        ;;
+    7)
+        clear;
+        bash Instalador/instalador.sh
         ;;
     0)
         clear

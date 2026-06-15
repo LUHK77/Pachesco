@@ -19,6 +19,7 @@ echo " 4) SQLite";
 echo " 5) Pycharm";
 echo " 6) Dev C++";
 echo ""
+echo " 7) Voltar"
 echo " 0) Sair"
 echo "───────────────────────────────────────────────"
 read -p " Digite o número da sua opção: " opcao
@@ -34,7 +35,6 @@ case $opcao in
         ;;
     3)
         clear;
-	    #Cria um arquivo com as informações do programa instalado
 	    criarPacote "eclipse" "snap";
 	    ;;
     4)
@@ -49,6 +49,10 @@ case $opcao in
         clear
         criarPacote "codeblocks" "apt"
         ;;
+    7)
+        clear;
+        bash Instalador/instalador.sh
+        ;;
     0)
         clear
         echo -e "\n${CYAN}[Saindo do instalador. Até mais!]${RESET}\n"
@@ -57,8 +61,7 @@ case $opcao in
     *)
         clear
         echo -e "\n${RED}[!] Opção inválida. Tente novamente.${RESET}"
-        bash programasDesenvolvedor.sh
         sleep 1
-        bash programasDesenvolvedor.sh
+        bash Instalador/programasDesenvolvedor.sh
         ;;
 esac

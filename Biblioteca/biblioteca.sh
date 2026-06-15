@@ -1,6 +1,7 @@
 #!/bin/bash
 source "Instalador/helpers.sh";
 
+estilizarTexto "Biblioteca";
 echo "1- Listar Programas";
 echo "2- Atualizar todos os programas";
 echo "3- Voltar";
@@ -33,8 +34,13 @@ case "$op" in
 	echo "Saindo....";
 	;;
 	*)
+	clear;
 	echo "Opção inválida.";
+	sleep 2;
+	bash Biblioteca/biblioteca.sh
 	;;
 esac
+
 sleep 2;
 bash menu.sh
+

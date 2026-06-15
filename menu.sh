@@ -6,6 +6,7 @@ source "Instalador/helpers.sh";
 CYAN='\033[0;36m'
 BOLD='\033[1m'
 RESET='\033[0m'
+RED='\033[0;31m'
 
 # Banner de Boas-Vindas
 
@@ -44,21 +45,23 @@ case "$op" in
     3)
     # Executa uma função que cria uma lista em formato de txt de todos os programas instalados pela aplicação e seu tipo de instalação 
     exportarPacotes
+    bash menu.sh
     ;;
     4)
     # Executa uma função que instala e cria os controladores dos programas 
     importarPacotes
+    bash menu.sh
     ;;
     5)
     echo "Saindo..."
     sleep 2;
     clear;
-	exit   
+	exit
     ;;
     *)
     echo -e "\n${RED}[!] Opção inválida. Tente novamente.${RESET}"
+    sleep 2;
     bash menu.sh;
     ;;
 esac
-sleep 2;
-bash menu.sh;
+
