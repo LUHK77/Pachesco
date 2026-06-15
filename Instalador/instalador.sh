@@ -1,6 +1,6 @@
 #!/bin/bash
 source "Instalador/helpers.sh";
-
+clear;
 # Menu de seleção de categoria de programas
 
 estilizarTexto "Qual tipo de programa deseja instalar?";
@@ -28,13 +28,19 @@ case "$op" in
 	bash Instalador/programasEmGeral.sh;
 	;;
 	"4")
-	clear;
-	read -p "Digite o nome do programa desejado: " programa;
-	#Cria um arquivo com as informações do programa instalado
-	criarPacote "$programa" "apt";
-	clear;
-	bash menu.sh;
-	;;
+    clear;
+    read -p "Digite o nome do programa desejado: " programa;
+    
+    if ! apt-cache show "$programa" &>/dev/null; then
+        echo "Pacote '$programa' não encontrado nos repositórios apt."
+        sleep 2
+        bash menu.sh
+    else
+        criarPacote "$programa" "apt";
+        clear;
+        bash menu.sh;
+    fi
+    ;;
 	"5")
 	clear;
 	bash menu.sh;

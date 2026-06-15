@@ -26,6 +26,7 @@ echo "2-Biblioteca";
 echo "3-Exportar Lista de Programas";
 echo "4-Importar Lista de Programas";
 echo "5-Sair";
+echo "";
 
 # Oferece a opção para o usuário digitar
 read -p "Digite uma opção: " op;
@@ -41,26 +42,23 @@ case "$op" in
     bash Biblioteca/biblioteca.sh
     ;;
     3)
-	clear;
+    # Executa uma função que cria uma lista em formato de txt de todos os programas instalados pela aplicação e seu tipo de instalação 
     exportarPacotes
     ;;
     4)
-	clear;
+    # Executa uma função que instala e cria os controladores dos programas 
     importarPacotes
     ;;
     5)
-	clear
     echo "Saindo..."
-	exit
+    sleep 2;
+    clear;
+	exit   
     ;;
     *)
-	clear
-    echo "Digite uma opção valida!"
-    bash menu.sh
+    echo -e "\n${RED}[!] Opção inválida. Tente novamente.${RESET}"
+    bash menu.sh;
     ;;
 esac
-
-
-
-
-
+sleep 2;
+bash menu.sh;

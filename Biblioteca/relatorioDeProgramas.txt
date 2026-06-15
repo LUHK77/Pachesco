@@ -1,2 +1,4 @@
-blender|snap
-nautilus|apt
+code|snap
+firefox|apt
+krita|apt
+libreoffice|apt

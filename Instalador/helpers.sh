@@ -111,8 +111,9 @@ criarPacote() {
     echo "Tamanho do arquivo: \$TAMANHO KB";
 	fi
 
-    echo "1-Atualizar Pacote";
-	echo "2-Remover Pacote";
+    echo "1-Atualizar Programa";
+	echo "2-Remover Programa";
+    echo "3-Executar Programa"
 	echo "3-Sair";
 	read -p "Digite uma opção: " opc;
 
@@ -140,15 +141,20 @@ criarPacote() {
         sudo rm -rf "\$(dirname "\${BASH_SOURCE[0]}")"
         ;;
     "3")
+        if command -v "\$NOME" &>/dev/null; then
+            "\$NOME"
+        else
+            echo "Não foi possível executar '\$NOME'. Tente abrir manualmente."
+            sleep 2
+        fi
+        ;;
+    "4")
         exit
         ;;
     *)
         echo "Opção Inválida";
         ;;
 	esac
-
-	clear;
-	bash menu.sh;
 EOF
 
     chmod +x "Biblioteca/Pacotes/${programa}.sh"

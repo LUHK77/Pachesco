@@ -23,14 +23,13 @@ echo " 4) Krita"
 echo " 5) Inkscape"
 echo " 6) Penpot"
 echo ""
-echo " 7) Voltar"
 echo " 0) Sair"
 echo "───────────────────────────────────────────────"
 read -p " Digite o número da sua opção: " opcao
 
 case $opcao in
     1)
-        clear
+        clear sleep 2;
         criarPacote "blender" "snap"
         ;;
     2)

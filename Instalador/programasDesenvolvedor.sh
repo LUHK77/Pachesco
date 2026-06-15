@@ -26,7 +26,7 @@ read -p " Digite o número da sua opção: " opcao
 case $opcao in
     1)
         clear
-        criarPacote "code" "apt"
+        criarPacote "code" "snap"
         ;;
     2)
         clear
