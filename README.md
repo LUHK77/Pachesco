@@ -33,6 +33,10 @@ O menu principal oferece quatro opções:
 
 O objetivo do projeto é simular, através de linhas de comando em Shell Script, uma biblioteca de gerenciamento de programas. Facilitando para que usuários inexperientes a respeito de comandos de terminal do Linux possam realizar instalação de programas.
 
+## Participantes do Projeto
+1. Lukas Schuch Matrícula: 2026001211
+2. Maria Eduarda Linck Matrícula: 2026001122
+3. Filipe Zissmann Costa Matrícula: 2025000958
 
 
 
